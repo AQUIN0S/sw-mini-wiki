@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "star-wars";
+    src: url("assets/fonts/star_jedi/starjedi/Starjedi.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("assets/fonts/open_sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    src: url("assets/fonts/open_sans/OpenSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-style: italic;
+    src: url("assets/fonts/open_sans/OpenSans-Italic.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-style: italic;
+    src: url("assets/fonts/open_sans/OpenSans-BoldItalic.ttf");
+}
+
+:root {
+    font-size: 20px;
+    font-family: "Open Sans";
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    align-items: center;
+}
+
+h1 {
+    font-family: "star-wars";
+    color: yellow;
+    font-size: 3rem;
+}
+
+.searchBar {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.searchBar>* {
+    padding: 0.5rem;
+}
+
+.searchBar>input[type="text"] {
+    position: absolute;
+    font-size: 1rem;
+    width: 100%;
+    height: 2rem;
+    background-color: #222831;
+    border: solid 0.1rem yellow;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    outline: none;
+    color: white;
+    z-index: 1;
+}
+
+.searchBar #selector {
+    position: relative;
+    z-index: 2;
+    font-family: "Open Sans";
+    font-size: 0.6rem;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    color: yellow;
+    user-select: none;
+    text-align: end;
+    box-sizing: border-box;
+}
+
+.searchBar #selector:hover {
+    cursor: pointer;
+}
+
+#options {
+    display: none;
+    margin-top: 0.7rem;
+}
+
+.option {
+    margin: 0.2rem;
+}
