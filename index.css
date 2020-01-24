@@ -46,6 +46,13 @@ h1 {
     font-size: 3rem;
 }
 
+main {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .searchBar {
     position: relative;
     display: flex;
@@ -95,4 +102,54 @@ h1 {
 
 .option {
     margin: 0.2rem;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 1rem;
+    margin: 5rem;
+
+}
+
+.gridItem {
+    box-sizing: border-box;
+    background-color: grey;
+    border-radius: 2rem;
+    padding: 1rem;
+    color: white;
+    border: 1px solid white;
+    word-wrap: break-word;
+}
+
+#loading {
+    width: fit-content;
+}
+
+#loading h2 {
+    text-align: center;
+    font-family: "star-wars";
+    color: yellow;
+    font-size: 2rem;
+}
+
+#loadingBar {
+    width: 20rem;
+    height: 0.5rem;
+    margin: auto;
+    padding: 0;
+    border: 1px solid yellow;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 0, 0.5);
+    overflow: hidden;
+}
+
+#loadingProgress {
+    position: relative;
+    width: 0;
+    height: 1rem;
+    background-color: yellow;
+    margin: 0;
+    padding: 0;
+    transition: linear 0.5s;
 }
