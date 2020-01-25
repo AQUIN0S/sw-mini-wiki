@@ -1,14 +1,12 @@
 const apiRoot = new URL("https://swapi.co/api/");
 const options = document.getElementById("options");
-const chevron = document.getElementById("chevron");
 let activeCategoryNode = document.getElementById("activeCategory");
 let activeCategory;
 let optionsVisible = false;
 const searchCategories = {};
-let items;
 
 const setActiveCategory = (category) => {
-    const lastIndex = activeCategoryNode.childNodes.length - 1
+    const lastIndex = activeCategoryNode.childNodes.length - 1;
     if (activeCategoryNode.childNodes[lastIndex].nodeType === Node.TEXT_NODE) {
         activeCategoryNode.childNodes[lastIndex].nodeValue = ` ${category}`;
     } else {
@@ -23,6 +21,7 @@ const populateSearchCategories = (data) => {
 };
 
 const toggleOptions = () => {
+    const chevron = document.getElementById("chevron");
     if (!optionsVisible) {
         options.style.display = "block";
         chevron.className = "fas fa-chevron-down";
@@ -44,6 +43,11 @@ const setDefaultCategory = () => {
     
     setActiveCategory(defaultCategory);
     activeCategoryNode.addEventListener("click", toggleOptions);
+};
+
+const clickOption = (event) => {
+    setActiveCategory(event.target.textContent);
+    toggleOptions();
 };
 
 const setupCategoryMenu = () => {
@@ -99,12 +103,27 @@ const formatKey = (key) => {
     return normalised;
 };
 
-const formatData = (data) => {
-    console.log(typeof data);
+
+/**
+ * The parameter data is expected to either be a string, or an array object.
+ * 
+ * @param {*} data 
+ */
+const formatData = async (data) => {
+    if (typeof data === "string" && data.match(/https:\/\/.*swapi.co.*/g)) {
+        let returnValue = data;
+        returnValue =  await fetch(data);
+        returnValue = await returnValue.json();
+        if (await returnValue.name) {
+            return await returnValue.name;
+        } else if (await returnValue.title) {
+            return await returnValue.title;
+        }
+    }
     return data;
 };
 
-const displayItems = (items) => {
+const displayItems = async (items) => {
     removeLoading();
     const grid = document.getElementById("grid");
     clearContent(grid);
@@ -113,19 +132,23 @@ const displayItems = (items) => {
         div = document.createElement("div");
         div.classList.add("gridItem");
         for (let property in item) {
-            if (div.childNodes.length !== 0) {
-                div.appendChild(document.createElement("br"));
+            if (property !== "url" && property !== "edited" && property !== "created") {
+                if (div.childNodes.length !== 0) {
+                    div.appendChild(document.createElement("br"));
+                }
+                if (typeof item[property] === "object") {
+                    div.appendChild(document.createTextNode(`${formatKey(property)}:`));
+                    for (let url of item[property]) {
+                        div.appendChild(document.createElement("br"));
+                        div.appendChild(document.createTextNode(`${await formatData(url)}`));
+                    }
+                } else {
+                    div.appendChild(document.createTextNode(`${formatKey(property)}: ${await formatData(item[property])}`));
+                }
             }
-            div.appendChild(document.createTextNode(`${formatKey(property)}: ${formatData(item[property])}`));
         }
         grid.appendChild(div);
     }
-};
-
-const clickOption = (event) => {
-    setActiveCategory(event.target.textContent);
-    toggleOptions();
-    
 };
 
 /**
@@ -138,7 +161,7 @@ const setupPage = async (root) => {
     let data = await response.json();
     populateSearchCategories(await data);
     setDefaultCategory();
-    items = await getContentData(new URL(activeCategory, root));
+    let items = await getContentData(new URL(activeCategory, root));
     displayItems(items);
     console.log(items);
 };
