@@ -1,0 +1,32 @@
+{
+  "name": "sw-mini-wiki",
+  "version": "1.0.0",
+  "description": "A miniature database on the Star Wars Universe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AQUIN0S/sw-mini-wiki.git"
+  },
+  "author": "Daniel Schimanski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AQUIN0S/sw-mini-wiki/issues"
+  },
+  "homepage": "https://github.com/AQUIN0S/sw-mini-wiki#readme",
+  "dependencies": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

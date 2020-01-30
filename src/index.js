@@ -35,7 +35,7 @@ const toggleOptions = () => {
 
 const setDefaultCategory = () => {
     let defaultCategory = null;
-    for (category in searchCategories) {
+    for (let category in searchCategories) {
         if (!defaultCategory) {
             defaultCategory = category;
         }
@@ -54,7 +54,7 @@ const setupCategoryMenu = () => {
     while (options.lastChild) {
         options.removeChild(options.lastChild);
     }
-    for (category in searchCategories) {
+    for (let category in searchCategories) {
         if (category !== activeCategory) {
             let node = document.createElement("div");
             node.classList.add("option", "hide");
