@@ -1,3 +1,5 @@
+// At this stage this file is not in use, but it will stay for reference as the project is being modified.
+
 const apiRoot = new URL("https://swapi.co/api/");
 const options = document.getElementById("options");
 let activeCategoryNode = document.getElementById("activeCategory");
