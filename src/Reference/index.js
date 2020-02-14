@@ -168,5 +168,4 @@ const setupPage = async (root) => {
     console.log(items);
 };
 
-
-setupPage(apiRoot);
+export { setupPage, apiRoot };

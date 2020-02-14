@@ -4,10 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.tsx",
+    devtool: 'inline-source-map',
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Star Wars Database'
+            title: 'Star Wars Database',
+            favicon: './src/lightsabers.ico'
         })
     ],
     module: {
