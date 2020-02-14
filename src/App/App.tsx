@@ -16,7 +16,6 @@ class App extends Component<{}, AppState> {
         this.setState({
             searchField: (event.target as HTMLInputElement).value
         });
-        console.log(this.state.searchField);
     }
 
     constructor(props: Readonly<{}>) {

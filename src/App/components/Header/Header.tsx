@@ -12,6 +12,7 @@ class Header extends Component<HeaderProps, {}> {
             <header>
                 <h1>Star Wars</h1>
                 <SearchBar onSearchChange={this.props.onSearchChange} />
+                <br />
                 <div>
                     The searchfield has value: {this.props.searchBarValue}
                 </div>
