@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 interface HeaderProps {
     searchBarValue: string;
     onSearchChange: Function;
+    activeCategory: string;
 };
 
 class Header extends Component<HeaderProps, {}> {
@@ -11,7 +12,9 @@ class Header extends Component<HeaderProps, {}> {
         return (
             <header>
                 <h1>Star Wars</h1>
-                <SearchBar onSearchChange={this.props.onSearchChange} />
+                <SearchBar
+                    onSearchChange={this.props.onSearchChange}
+                    activeCategory={this.props.activeCategory} />
                 <br />
                 <div>
                     The searchfield has value: {this.props.searchBarValue}

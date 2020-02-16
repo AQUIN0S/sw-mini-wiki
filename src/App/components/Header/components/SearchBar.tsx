@@ -4,6 +4,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchBarProps {
     onSearchChange: Function;
+    activeCategory: string;
 };
 
 class SearchBar extends Component<SearchBarProps, {}> {
@@ -18,7 +19,9 @@ class SearchBar extends Component<SearchBarProps, {}> {
                         <FontAwesomeIcon icon={faChevronRight} />
                     </div>
                 </div>
-                <div className="options"></div>
+                <div className="options">
+                    
+                </div>
             </div>
         );
     }
