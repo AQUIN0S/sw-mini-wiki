@@ -24,10 +24,13 @@ class App extends Component<{}, AppState> {
     }
 
     componentDidMount() {
-        let response = fetch(this.apiRoot)
+        fetch(this.apiRoot)
             .then(response => response.json())
             .then(categories => {
-                this.setState({ categories: categories });
+                this.setState({
+                    categories: categories,
+                    activeCategory: categories[0] ? categories[0] : ''
+                });
             });
     }
 
@@ -39,11 +42,13 @@ class App extends Component<{}, AppState> {
 
     render() {
         console.log(this.state.categories);
+        console.log(this.state.activeCategory);
         return (
             <Fragment>
                 <Header
                     searchBarValue={this.state.searchField}
                     onSearchChange={this.onSearchChange}
+                    categories={this.state.categories}
                     activeCategory={this.state.activeCategory} />
                 <Main />
             </Fragment>

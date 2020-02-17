@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import SearchBar from './components/SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 interface HeaderProps {
     searchBarValue: string;
     onSearchChange: Function;
+    categories: object
     activeCategory: string;
 };
 
@@ -14,6 +15,7 @@ class Header extends Component<HeaderProps, {}> {
                 <h1>Star Wars</h1>
                 <SearchBar
                     onSearchChange={this.props.onSearchChange}
+                    categories={this.props.categories}
                     activeCategory={this.props.activeCategory} />
                 <br />
                 <div>
