@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment, MouseEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import CategoriesList from './CategoriesList/CategoriesList';
+
+interface SearchBarState {
+    categoriesVisible: boolean;
+};
 
 interface SearchBarProps {
     onSearchChange: Function;
@@ -9,24 +13,55 @@ interface SearchBarProps {
     activeCategory: string;
 };
 
-class SearchBar extends Component<SearchBarProps, {}> {
+class SearchBar extends Component<SearchBarProps, SearchBarState> {
+
+    constructor(props: SearchBarProps) {
+        super(props);
+        this.state = {
+            categoriesVisible: false
+        };
+    }
+
+    toggleCategoriesVisible = (event: MouseEvent): void => {
+        this.setState((prevState: SearchBarState) => {
+            categoriesVisible: prevState.categoriesVisible ? false : true
+        });
+    }
+
     render() {
         return (
             <div className="searchBar">
-                <input type="text" name="search" id="search" placeholder="Search database" onChange={(
-                    event: React.ChangeEvent<HTMLInputElement>
-                ): void => this.props.onSearchChange(event)} />
-                <div id="selector">
-                    <div id="activeCategory">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
-                </div>
-                <div className="options">
-                    {CategoriesList}
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search database"
+                    onChange={ (event: React.ChangeEvent<HTMLInputElement>): void => {
+                        return this.props.onSearchChange(event)
+                    } }
+                />
+                <div id="selector" onClick={this.toggleCategoriesVisible}>
+                    {
+                        this.state.categoriesVisible ? (
+                            <Fragment>
+                                <div id="activeCategory">
+                                    <FontAwesomeIcon icon={faChevronDown} /> {this.props.activeCategory}
+                                </div>
+                                <div id="options">
+                                    <CategoriesList activeCategory={this.props.activeCategory} categories={this.props.categories} />
+                                </div>
+                            </Fragment>
+                        ) : (
+                            <div id="activeCategory">
+                                <FontAwesomeIcon icon={faChevronRight} /> {this.props.activeCategory}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         );
     }
-}
+    
+};
 
 export default SearchBar;

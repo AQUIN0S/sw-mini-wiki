@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
 
 interface HeaderProps {
@@ -8,22 +8,20 @@ interface HeaderProps {
     activeCategory: string;
 };
 
-class Header extends Component<HeaderProps, {}> {
-    render() {
-        return (
-            <header>
-                <h1>Star Wars</h1>
-                <SearchBar
-                    onSearchChange={this.props.onSearchChange}
-                    categories={this.props.categories}
-                    activeCategory={this.props.activeCategory} />
-                <br />
-                <div>
-                    The searchfield has value: {this.props.searchBarValue}
-                </div>
-            </header>
-        );
-    }
+const Header = (props: HeaderProps) => {
+    return (
+        <header>
+            <h1>Star Wars</h1>
+            <SearchBar
+                onSearchChange={props.onSearchChange}
+                categories={props.categories}
+                activeCategory={props.activeCategory} />
+            <br />
+            <div>
+                The searchfield has value: {props.searchBarValue}
+            </div>
+        </header>
+    );
 }
 
 export default Header;

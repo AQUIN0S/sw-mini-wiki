@@ -27,9 +27,10 @@ class App extends Component<{}, AppState> {
         fetch(this.apiRoot)
             .then(response => response.json())
             .then(categories => {
+                const activeCategory = Object.keys(categories)[0];
                 this.setState({
                     categories: categories,
-                    activeCategory: categories[0] ? categories[0] : ''
+                    activeCategory: activeCategory ? activeCategory : ''
                 });
             });
     }
