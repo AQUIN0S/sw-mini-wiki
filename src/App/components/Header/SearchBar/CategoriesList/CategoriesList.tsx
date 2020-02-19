@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 interface CategoriesListProps {
     categories: object;
     activeCategory: string;
+    selectActiveCategory: Function;
 };
 
 const CategoriesList = (props: CategoriesListProps) => {
@@ -11,7 +12,13 @@ const CategoriesList = (props: CategoriesListProps) => {
         <Fragment>
             {categoryNamesArray.map(category => {
                 return (
-                    <div key={category} className="option">
+                    <div
+                        key={category}
+                        className="option"
+                        onClick={ (event: React.MouseEvent<HTMLElement>): void => {
+                            return props.selectActiveCategory(event);
+                        } }
+                    >
                         {category}
                     </div>
                 );

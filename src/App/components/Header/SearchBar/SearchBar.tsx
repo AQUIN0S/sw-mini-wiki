@@ -11,6 +11,7 @@ interface SearchBarProps {
     onSearchChange: Function;
     categories: object;
     activeCategory: string;
+    selectActiveCategory: Function;
 };
 
 class SearchBar extends Component<SearchBarProps, SearchBarState> {
@@ -37,7 +38,7 @@ class SearchBar extends Component<SearchBarProps, SearchBarState> {
                     id="search"
                     placeholder="Search database"
                     onChange={ (event: React.ChangeEvent<HTMLInputElement>): void => {
-                        return this.props.onSearchChange(event)
+                        return this.props.onSearchChange(event);
                     } }
                 />
                 <div id="selector" onClick={this.toggleCategoriesVisible}>
@@ -48,7 +49,10 @@ class SearchBar extends Component<SearchBarProps, SearchBarState> {
                                     <FontAwesomeIcon icon={faChevronDown} /> {this.props.activeCategory}
                                 </div>
                                 <div id="options">
-                                    <CategoriesList activeCategory={this.props.activeCategory} categories={this.props.categories} />
+                                    <CategoriesList
+                                        activeCategory={this.props.activeCategory}
+                                        categories={this.props.categories}
+                                        selectActiveCategory={this.props.selectActiveCategory} />
                                 </div>
                             </Fragment>
                         ) : (

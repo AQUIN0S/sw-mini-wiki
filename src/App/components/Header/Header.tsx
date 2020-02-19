@@ -6,6 +6,7 @@ interface HeaderProps {
     onSearchChange: Function;
     categories: object
     activeCategory: string;
+    selectActiveCategory: Function;
 };
 
 const Header = (props: HeaderProps) => {
@@ -15,7 +16,8 @@ const Header = (props: HeaderProps) => {
             <SearchBar
                 onSearchChange={props.onSearchChange}
                 categories={props.categories}
-                activeCategory={props.activeCategory} />
+                activeCategory={props.activeCategory}
+                selectActiveCategory={props.selectActiveCategory} />
             <br />
             <div>
                 The searchfield has value: {props.searchBarValue}

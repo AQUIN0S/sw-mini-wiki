@@ -35,9 +35,16 @@ class App extends Component<{}, AppState> {
             });
     }
 
-    onSearchChange = (event: ChangeEvent): void => {
+    onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
         this.setState({
-            searchField: (event.target as HTMLInputElement).value
+            searchField: event.target.value
+        });
+    }
+
+    selectActiveCategory = (event: React.MouseEvent<HTMLElement>): void => {
+        console.log(event.currentTarget.textContent);
+        this.setState({
+            activeCategory: event.currentTarget.textContent
         });
     }
 
@@ -50,7 +57,8 @@ class App extends Component<{}, AppState> {
                     searchBarValue={this.state.searchField}
                     onSearchChange={this.onSearchChange}
                     categories={this.state.categories}
-                    activeCategory={this.state.activeCategory} />
+                    activeCategory={this.state.activeCategory}
+                    selectActiveCategory={this.selectActiveCategory} />
                 <Main />
             </Fragment>
         );
