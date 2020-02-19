@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 
-interface CategoriesArrayProps {
+interface CategoriesListProps {
     categories: object;
     activeCategory: string;
 };
 
-const CategoriesList = (props: CategoriesArrayProps) => {
-    const categories = Object.keys(props.categories).filter(key => key !== props.activeCategory);
+const CategoriesList = (props: CategoriesListProps) => {
+    const categoryNamesArray = Object.keys(props.categories).filter(key => key !== props.activeCategory);
     return (
         <Fragment>
-            {categories.map(category => {
+            {categoryNamesArray.map(category => {
                 return (
                     <div key={category} className="option">
                         {category}

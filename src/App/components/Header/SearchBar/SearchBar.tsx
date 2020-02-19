@@ -1,4 +1,4 @@
-import React, { Component, Fragment, MouseEvent } from 'react';
+import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import CategoriesList from './CategoriesList/CategoriesList';
