@@ -22,9 +22,9 @@ class SearchBar extends Component<SearchBarProps, SearchBarState> {
         };
     }
 
-    toggleCategoriesVisible = (event: MouseEvent): void => {
+    toggleCategoriesVisible = (): void => {
         this.setState((prevState: SearchBarState) => {
-            categoriesVisible: prevState.categoriesVisible ? false : true
+            return { categoriesVisible: (prevState.categoriesVisible ? false : true) }
         });
     }
 
