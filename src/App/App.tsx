@@ -1,6 +1,7 @@
 import React, { Component, Fragment, ChangeEvent } from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import ApiInterface from './utility/ApiInterface';
 
 interface AppState {
     searchField: string;
@@ -10,8 +11,6 @@ interface AppState {
 }
 
 class App extends Component<{}, AppState> {
-
-    apiRoot: string = "https://swapi.co/api/";
 
     constructor(props: Readonly<{}>) {
         super(props);
@@ -23,16 +22,22 @@ class App extends Component<{}, AppState> {
         };
     }
 
-    componentDidMount() {
-        fetch(this.apiRoot)
-            .then(response => response.json())
-            .then(categories => {
-                const activeCategory = Object.keys(categories)[0];
-                this.setState({
-                    categories: categories,
-                    activeCategory: activeCategory ? activeCategory : ''
-                });
-            });
+    async componentDidMount() {
+        const categories = await ApiInterface.fetchCategories();
+        const activeCategory = Object.keys(categories)[0];
+
+        this.setState({
+            categories: categories,
+            activeCategory: activeCategory ? activeCategory : ''
+        });
+
+        for (let category in categories) {
+            console.log(await ApiInterface.fetchDataInCategory(category));
+        }
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.categories);
     }
 
     onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -42,15 +47,12 @@ class App extends Component<{}, AppState> {
     }
 
     selectActiveCategory = (event: React.MouseEvent<HTMLElement>): void => {
-        console.log(event.currentTarget.textContent);
         this.setState({
             activeCategory: event.currentTarget.textContent
         });
     }
 
     render() {
-        console.log(this.state.categories);
-        console.log(this.state.activeCategory);
         return (
             <Fragment>
                 <Header
