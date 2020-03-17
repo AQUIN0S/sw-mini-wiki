@@ -31,13 +31,21 @@ class App extends Component<{}, AppState> {
             activeCategory: activeCategory ? activeCategory : ''
         });
 
+        // This loop doesn't work properly yet....
         for (let category in categories) {
-            console.log(await ApiInterface.fetchDataInCategory(category));
+            const categoryData = (await ApiInterface.fetchDataInCategory(category)) as object;
+            this.setState(prevState => ({
+                data: {
+                    ...prevState.data,
+                    [category]: categoryData
+                }
+            }));
         }
     }
 
     componentDidUpdate() {
         console.log(this.state.categories);
+        console.log(this.state.data);
     }
 
     onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
