@@ -6,7 +6,7 @@ import ApiInterface from './utility/ApiInterface';
 interface AppState {
     searchField: string;
     categories: object;
-    data: object;
+    data: {[key: string]: object[]};
     activeCategory: string;
 }
 
@@ -31,9 +31,9 @@ class App extends Component<{}, AppState> {
             activeCategory: activeCategory ? activeCategory : ''
         });
 
-        // This loop doesn't work properly yet....
+        // This loop has been SUCH a pain!!!!!!
         for (let category in categories) {
-            const categoryData = (await ApiInterface.fetchDataInCategory(category)) as object;
+            const categoryData = (await ApiInterface.fetchDataInCategory(category)) as object[];
             this.setState(prevState => ({
                 data: {
                     ...prevState.data,
@@ -46,6 +46,8 @@ class App extends Component<{}, AppState> {
     componentDidUpdate() {
         console.log(this.state.categories);
         console.log(this.state.data);
+        console.log(this.state.activeCategory);
+        console.log(this.state.data[this.state.activeCategory]);
     }
 
     onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -69,7 +71,8 @@ class App extends Component<{}, AppState> {
                     categories={this.state.categories}
                     activeCategory={this.state.activeCategory}
                     selectActiveCategory={this.selectActiveCategory} />
-                <Main />
+                <Main
+                    categoryData={this.state.data[this.state.activeCategory]} />
             </Fragment>
         );
     }

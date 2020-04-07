@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
-class Main extends Component {
+interface MainProps {
+    categoryData: object[]
+}
+
+class Main extends Component<MainProps, {}> {
     render() {
         return (
             <main>
-                <div id="loading">
-                    <h2>Loading...</h2>
-                    <div id="loadingBar">
-                        <div id="loadingProgress"></div>
-                    </div>
-                </div>
                 <div id="grid"></div>
             </main>
         );
