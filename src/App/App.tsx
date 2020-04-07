@@ -46,8 +46,6 @@ class App extends Component<{}, AppState> {
     componentDidUpdate() {
         console.log(this.state.categories);
         console.log(this.state.data);
-        console.log(this.state.activeCategory);
-        console.log(this.state.data[this.state.activeCategory]);
     }
 
     onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {

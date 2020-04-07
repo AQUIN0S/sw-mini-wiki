@@ -6,11 +6,26 @@ interface MainProps {
 
 class Main extends Component<MainProps, {}> {
     render() {
-        return (
-            <main>
-                <div id="grid"></div>
-            </main>
-        );
+        if (this.props.categoryData) {
+            return (
+                <main>
+                    <div id="grid">
+                        {this.props.categoryData.map(item => {
+                            const firstDataPoint = Object.keys(item)[0];
+                            return (
+                                <div className="gridItem">
+                                    {firstDataPoint}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </main>
+            );
+        } else {
+            return (
+                <main></main>
+            );
+        }
     }
 }
 
