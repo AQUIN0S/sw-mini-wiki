@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import CategoriesList from './CategoriesList/CategoriesList';
+import './SearchBar.css';
 
 interface SearchBarState {
     categoriesVisible: boolean;

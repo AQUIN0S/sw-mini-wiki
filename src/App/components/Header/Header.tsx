@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
+import './Header.css';
 
 interface HeaderProps {
     searchBarValue: string;
@@ -19,9 +20,6 @@ const Header = (props: HeaderProps) => {
                 activeCategory={props.activeCategory}
                 selectActiveCategory={props.selectActiveCategory} />
             <br />
-            <div>
-                The searchfield has value: {props.searchBarValue}
-            </div>
         </header>
     );
 }

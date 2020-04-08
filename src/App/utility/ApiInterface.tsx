@@ -9,10 +9,10 @@ class ApiInterface {
         return (await fetch(this.apiRoot)).json();
     }
 
-    static async fetchDataInCategory(category: string) {
+    static async fetchDataInCategory(category: string): Promise<{[key: string]: string}[]> {
         let response = await fetch(`${this.apiRoot}${category}`);
         let data = await response.json();
-        let results = data.results;
+        let results: {[key: string]: string}[] = data.results;
         while (data.next) {
             response = await fetch(data.next);
             data = await response.json();

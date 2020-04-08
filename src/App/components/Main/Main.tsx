@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 interface MainProps {
-    categoryData: object[]
+    categoryData: {[key: string]: string}[]
 }
 
 class Main extends Component<MainProps, {}> {
@@ -13,8 +13,8 @@ class Main extends Component<MainProps, {}> {
                         {this.props.categoryData.map(item => {
                             const firstDataPoint = Object.keys(item)[0];
                             return (
-                                <div className="gridItem">
-                                    {firstDataPoint}
+                                <div className="gridItem" key={item[firstDataPoint]}>
+                                    {`${firstDataPoint}: ${item[firstDataPoint]}`}
                                 </div>
                             )
                         })}

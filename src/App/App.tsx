@@ -2,11 +2,12 @@ import React, { Component, Fragment, ChangeEvent } from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import ApiInterface from './utility/ApiInterface';
+import './App.css';
 
 interface AppState {
     searchField: string;
     categories: object;
-    data: {[key: string]: object[]};
+    data: {[key: string]: {[key: string]: string}[]};
     activeCategory: string;
 }
 
@@ -33,7 +34,7 @@ class App extends Component<{}, AppState> {
 
         // This loop has been SUCH a pain!!!!!!
         for (let category in categories) {
-            const categoryData = (await ApiInterface.fetchDataInCategory(category)) as object[];
+            const categoryData = (await ApiInterface.fetchDataInCategory(category));
             this.setState(prevState => ({
                 data: {
                     ...prevState.data,
@@ -41,11 +42,6 @@ class App extends Component<{}, AppState> {
                 }
             }));
         }
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.categories);
-        console.log(this.state.data);
     }
 
     onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
