@@ -2,6 +2,8 @@
  * Retrieve the data from the swapi database and return the data that's asked for back to the caller.
  */
 
+import people from './DummyData';
+
 class ApiInterface {
     static apiRoot: string = "https://swapi.co/api/";
 
@@ -19,6 +21,11 @@ class ApiInterface {
             results = results.concat(data.results);
         }
         return results;
+    }
+
+    static fetchDummyDataInCategory(): {[key: string]: string}[] {
+        let data = JSON.parse(people);
+        return data.results;
     }
 }
 

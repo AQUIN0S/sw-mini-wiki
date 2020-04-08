@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Main.css';
 
 interface MainProps {
     categoryData: {[key: string]: string}[]
